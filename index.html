@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-
 <html ng-app="drawinator">
 <head>
   <title>Drawinator</title>
-
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body ng-controller="ColorPicker">
+<body ng-controller="ColorPicker" style="margin: 30px; margin-top: 70px;">
   <form>
-    <div class="toolbar">
+    <div class="toolbar" style="position: fixed; top: 10px; left: 50px;">
       <div>
         <span ng-repeat="color in colors"><input
             name="color"
@@ -27,8 +25,8 @@
         <input type="color" id="current" name="favcolor" ng-model="selected.color.value">
       </div>
     </div>
+    <canvas width="640" height="480" onmousemove="canvasClick(event)" onclick="canvasClick(event)" id="surface"></canvas>
   </form>
-  
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
   <script src="main.js"></script>
 </body>

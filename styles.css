@@ -1,25 +1,29 @@
 div.toolbar {
-  padding: 2px;
+  padding: 8px;
   border: 1px solid #999;
   border-radius: 3px;
   background-color: white;
   display: inline-block;
+  box-shadow: 0 0 5px black;
 }
 input.color {
   display: none;
 }
 label.color {
-  box-sizing: border-box;
   display: inline-block;
   text-indent: 100px;
   overflow: hidden;
   white-space: nowrap;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   margin: 1px;
   border: 1px solid #999;
   border-radius: 3px;
 }
 input.color:checked + label {
-  border: 3px dashed black;
+  box-shadow: 0px 0px 1px 1px black;
+}
+canvas {
+  border: 1px solid black;
+  box-shadow: 0 0 5px black;
 }
