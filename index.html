@@ -10,24 +10,25 @@
 <body ng-controller="ColorPicker">
   <form>
     <div class="toolbar">
-      <span ng-repeat="color in colors">
-          
-          <input
+      <div>
+        <span ng-repeat="color in colors"><input
             name="color"
+            class="color"
             ng-model="selected.color"
             type="radio"
             id="{{color.id}}"
-            ng-value="color"/>
-          
-        <label
-          style="background-color: {{color.value}}"
-          for="{{color.id}}">
-          {{color.label}}
-        </label>
-      </span>
+            ng-value="color"
+          /><label
+            class="color"
+            style="background-color: {{color.value}}"
+            for="{{color.id}}">
+            {{color.label}}
+          </label></span>
+        <input type="color" id="current" name="favcolor" ng-model="selected.color.value">
+      </div>
     </div>
-      {{selected.color|json}}
   </form>
+  
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
   <script src="main.js"></script>
 </body>

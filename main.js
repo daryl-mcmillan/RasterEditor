@@ -10,20 +10,20 @@ module.controller('ColorPicker',[
     };
     
     $scope.colors = [
-      color("#000"),
-      color("#FFF"),
-      color("#F00"),
-      color("#0F0"),
-      color("#00F"),
-      color("#FF0"),
-      color("#0FF"),
-      color("#F0F"),
-      color("#966"),
-      color("#696"),
-      color("#669"),
-      color("#666"),
-      color("#999"),
-      color("#CCC")
+      color("#000000"),
+      color("#FFFFFF"),
+      color("#FF0000"),
+      color("#00FF00"),
+      color("#0000FF"),
+      color("#FFFF00"),
+      color("#00FFFF"),
+      color("#FF00FF"),
+      color("#996666"),
+      color("#669966"),
+      color("#666699"),
+      color("#666666"),
+      color("#999999"),
+      color("#CCCCCC")
     ];
     
     $scope.selected = { color: $scope.colors[0] };
