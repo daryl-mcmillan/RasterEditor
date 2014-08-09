@@ -16,7 +16,7 @@ function newImage(width, height) {
       data.data[3] = a;
       image.ctx.putImageData(data,x,y);
     },
-    draw : function(context,x,y,targetWidth,targetHeight) {
+    copyTo : function(context,x,y,targetWidth,targetHeight) {
       context.drawImage(image,0,0,width,height,x,y,targetWidth,targetHeight);
     }
   };
@@ -26,7 +26,7 @@ var image = newImage(200,200);
 var scale = 8;
 
 function drawSurface() {
-  image.draw(surface.ctx,0,0,surface.width,surface.height);
+  image.copyTo(surface.ctx,0,0,surface.width,surface.height);
 }
 
 function configureSurface() {
