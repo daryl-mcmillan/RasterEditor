@@ -16,8 +16,12 @@ function drawSurface() {
 }
 
 function configureSurface() {
-  surface.width=scale*image.width;
-  surface.height=scale*image.height;
+  surface.width = image.width * 4;
+  surface.height = image.height * 4;
+  surface.style.width = (image.width * scale) + "px";
+  surface.style.height = (image.height * scale) + "px";
+  //surface.width=scale*image.width;
+  //surface.height=scale*image.height;
   surface.ctx = surface.getContext("2d");
   surface.ctx.imageSmoothingEnabled = false;
   drawSurface();
@@ -99,14 +103,14 @@ function endTrace() {
 }
 function traceMove(e) {
   if(buttonDown) {
-    var imageX = Math.floor((e.offsetX/surface.width) * image.width);
-    var imageY = Math.floor((e.offsetY/surface.height) * image.height);
+    var imageX = Math.floor(e.offsetX/scale);
+    var imageY = Math.floor(e.offsetY/scale);
     drawDot(imageX,imageY);
   }
 }
 function canvasClick(e) {
-  var imageX = Math.floor((e.offsetX/surface.width) * image.width);
-  var imageY = Math.floor((e.offsetY/surface.height) * image.height);
+  var imageX = Math.floor(e.offsetX/scale);
+  var imageY = Math.floor(e.offsetY/scale);
   drawDot(imageX,imageY);
 }
 document.addEventListener('mouseup', endTrace);
