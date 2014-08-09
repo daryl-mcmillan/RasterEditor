@@ -56,19 +56,38 @@ module.controller('ColorPicker',[
   }
 ]);
 
-function canvasMove(e) {
-  
-}
-
-function canvasClick(e) {
-  var imageX = Math.floor((e.offsetX/surface.width) * image.width);
-  var imageY = Math.floor((e.offsetY/surface.height) * image.height);
+function drawDot(x,y) {
   var data = image.ctx.createImageData(1,1);
   var parts = selected.color.value.match(/[0-9A-F]{2}/gi);
   data.data[0] = parseInt(parts[0],16);
   data.data[1] = parseInt(parts[1],16);
   data.data[2] = parseInt(parts[2],16);
   data.data[3] = 255;
-  image.ctx.putImageData(data,imageX,imageY);
+  image.ctx.putImageData(data,x,y);
   surface.ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, surface.width, surface.height);
 }
+
+var buttonDown = false;
+function beginTrace(){
+  buttonDown = true;
+}
+function endTrace() {
+  buttonDown = false;
+}
+function traceMove(e) {
+  if(buttonDown) {
+    var imageX = Math.floor((e.offsetX/surface.width) * image.width);
+    var imageY = Math.floor((e.offsetY/surface.height) * image.height);
+    drawDot(imageX,imageY);
+  }
+}
+function canvasClick(e) {
+  var imageX = Math.floor((e.offsetX/surface.width) * image.width);
+  var imageY = Math.floor((e.offsetY/surface.height) * image.height);
+  drawDot(imageX,imageY);
+}
+document.addEventListener('mouseup', endTrace);
+surface.addEventListener('mouseout', endTrace);
+surface.addEventListener('mousedown', beginTrace);
+surface.addEventListener('mousemove', traceMove);
+surface.addEventListener('click', canvasClick);
