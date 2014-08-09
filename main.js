@@ -85,8 +85,7 @@ module.controller('ColorPicker',[
     
     $scope.selected = selected;
     selected.color = $scope.colors[0];
-    
-    $scope.test = "my test value";
+
   }
 ]);
 
