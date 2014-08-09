@@ -5,11 +5,11 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body ng-controller="ColorPicker" style="margin: 30px; margin-top: 70px;">
+<body style="margin: 30px; margin-top: 70px;">
   <form>
     <div style="position: fixed; top: 10px; left: 50px;">
       <div class="toolbar">
-        <div>
+        <div ng-controller="ColorPicker">
           <span ng-repeat="color in colors"><input
               name="color"
               class="color"
