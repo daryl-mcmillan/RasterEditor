@@ -42,7 +42,7 @@ module.controller('ColorPicker',[
 ]);
 
 function canvasClick(e) {
-  var parts = selected.color.value.match(/[0-9A-F]{2}/g)
+  var parts = selected.color.value.match(/[0-9A-F]{2}/gi);
   var x = e.offsetX;
   var y = e.offsetY;
   var data = ctx.getImageData(x, y, 1, 1);
