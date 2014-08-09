@@ -7,13 +7,12 @@ function newImage(width, height) {
 }
 var image = newImage(200,200);
 
-var scale = 4;
+var scale = 8;
 
 var surface = document.getElementById("surface");
+surface.width=scale*image.width;
+surface.height=scale*image.height;
 surface.ctx = surface.getContext("2d");
-surface.ctx.mozImageSmoothingEnabled = false;
-surface.ctx.webkitImageSmoothingEnabled = false;
-surface.ctx.msImageSmoothingEnabled = false;
 surface.ctx.imageSmoothingEnabled = false;
 
 var selected = {}
@@ -71,8 +70,5 @@ function canvasClick(e) {
   data.data[2] = parseInt(parts[2],16);
   data.data[3] = 255;
   image.ctx.putImageData(data,imageX,imageY);
-  //console.log([image,0,0,image.width,image.height,surface.width,surface.height]);
-  //ctx.putImageData(image, 0, 0, image.width, image.height, surface.width, surface.height);
   surface.ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, surface.width, surface.height);
-  //ctx.drawImage(image, 0, 0);
 }
