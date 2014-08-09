@@ -1,5 +1,21 @@
+function newImage(width, height) {
+  image = document.createElement("canvas");
+  image.width = width;
+  image.height = height;
+  image.ctx = image.getContext("2d");
+  return image;
+}
+var image = newImage(200,200);
+
+var scale = 4;
+
 var surface = document.getElementById("surface");
-var ctx = surface.getContext("2d");
+surface.ctx = surface.getContext("2d");
+surface.ctx.mozImageSmoothingEnabled = false;
+surface.ctx.webkitImageSmoothingEnabled = false;
+surface.ctx.msImageSmoothingEnabled = false;
+surface.ctx.imageSmoothingEnabled = false;
+
 var selected = {}
 
 var module = angular.module('drawinator', []);
@@ -41,14 +57,22 @@ module.controller('ColorPicker',[
   }
 ]);
 
+function canvasMove(e) {
+  
+}
+
 function canvasClick(e) {
+  var imageX = Math.floor((e.offsetX/surface.width) * image.width);
+  var imageY = Math.floor((e.offsetY/surface.height) * image.height);
+  var data = image.ctx.createImageData(1,1);
   var parts = selected.color.value.match(/[0-9A-F]{2}/gi);
-  var x = e.offsetX;
-  var y = e.offsetY;
-  var data = ctx.getImageData(x, y, 1, 1);
   data.data[0] = parseInt(parts[0],16);
   data.data[1] = parseInt(parts[1],16);
   data.data[2] = parseInt(parts[2],16);
   data.data[3] = 255;
-  ctx.putImageData(data, x, y);
+  image.ctx.putImageData(data,imageX,imageY);
+  //console.log([image,0,0,image.width,image.height,surface.width,surface.height]);
+  //ctx.putImageData(image, 0, 0, image.width, image.height, surface.width, surface.height);
+  surface.ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, surface.width, surface.height);
+  //ctx.drawImage(image, 0, 0);
 }
