@@ -1,18 +1,32 @@
 var surface = document.getElementById("surface");
 
 function newImage(width, height) {
-  image = document.createElement("canvas");
+  var image = document.createElement("canvas");
   image.width = width;
   image.height = height;
   image.ctx = image.getContext("2d");
-  return image;
+  return {
+    width: width,
+    height: height,
+    drawDot: function(x,y,r,g,b,a) {
+      var data = image.ctx.createImageData(1,1);
+      data.data[0] = r;
+      data.data[1] = g;
+      data.data[2] = b;
+      data.data[3] = a;
+      image.ctx.putImageData(data,x,y);
+    },
+    draw : function(context,x,y,targetWidth,targetHeight) {
+      context.drawImage(image,0,0,width,height,x,y,targetWidth,targetHeight);
+    }
+  };
 }
 var image = newImage(200,200);
 
 var scale = 8;
 
 function drawSurface() {
-  surface.ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, surface.width, surface.height);
+  image.draw(surface.ctx,0,0,surface.width,surface.height);
 }
 
 function configureSurface() {
@@ -20,8 +34,6 @@ function configureSurface() {
   surface.height = image.height * 4;
   surface.style.width = (image.width * scale) + "px";
   surface.style.height = (image.height * scale) + "px";
-  //surface.width=scale*image.width;
-  //surface.height=scale*image.height;
   surface.ctx = surface.getContext("2d");
   surface.ctx.imageSmoothingEnabled = false;
   drawSurface();
@@ -84,13 +96,12 @@ module.controller('ColorPicker',[
 ]);
 
 function drawDot(x,y) {
-  var data = image.ctx.createImageData(1,1);
   var parts = selected.color.value.match(/[0-9A-F]{2}/gi);
-  data.data[0] = parseInt(parts[0],16);
-  data.data[1] = parseInt(parts[1],16);
-  data.data[2] = parseInt(parts[2],16);
-  data.data[3] = 255;
-  image.ctx.putImageData(data,x,y);
+  r = parseInt(parts[0],16);
+  g = parseInt(parts[1],16);
+  b = parseInt(parts[2],16);
+  a = 255;
+  image.drawDot(x,y,r,g,b,a);
   drawSurface();
 }
 
