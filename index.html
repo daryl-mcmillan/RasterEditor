@@ -15,13 +15,13 @@
               class="color"
               ng-model="selected.color"
               type="radio"
-              id="{{color.id}}"
+              id="c{{color.id}}"
               ng-value="color"
             /><label
               class="color"
               style="background-color: {{color.value}}"
-              for="{{color.id}}">
-              {{color.label}}
+              for="c{{color.id}}">
+              color {{color.id}}
             </label></span>
           <input type="color" id="current" name="favcolor" ng-model="selected.color.value">
         </div>

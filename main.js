@@ -63,14 +63,9 @@ module.controller('ColorPicker',[
 
     var cid = 0;
     var color = function(value) {
-      cid ++;
-      return {
-        id: 'c' + cid,
-        label: 'color ' + cid,
-        value: value
-      };
+      return { id: ++cid, value: value };
     };
-    
+
     $scope.colors = [
       color("#000000"),
       color("#FFFFFF"),
