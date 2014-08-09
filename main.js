@@ -1,3 +1,5 @@
+var surface = document.getElementById("surface");
+
 function newImage(width, height) {
   image = document.createElement("canvas");
   image.width = width;
@@ -9,11 +11,32 @@ var image = newImage(200,200);
 
 var scale = 8;
 
-var surface = document.getElementById("surface");
-surface.width=scale*image.width;
-surface.height=scale*image.height;
-surface.ctx = surface.getContext("2d");
-surface.ctx.imageSmoothingEnabled = false;
+function drawSurface() {
+  surface.ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, surface.width, surface.height);
+}
+
+function configureSurface() {
+  surface.width=scale*image.width;
+  surface.height=scale*image.height;
+  surface.ctx = surface.getContext("2d");
+  surface.ctx.imageSmoothingEnabled = false;
+  drawSurface();
+}
+
+configureSurface();
+
+function zoomIn() {
+  scale *= 2;
+  configureSurface();
+}
+
+function zoomOut() {
+  scale /= 2;
+  configureSurface();
+}
+
+document.getElementById('zoomin').addEventListener('click',zoomIn);
+document.getElementById('zoomout').addEventListener('click',zoomOut);
 
 var selected = {}
 
@@ -64,7 +87,7 @@ function drawDot(x,y) {
   data.data[2] = parseInt(parts[2],16);
   data.data[3] = 255;
   image.ctx.putImageData(data,x,y);
-  surface.ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, surface.width, surface.height);
+  drawSurface();
 }
 
 var buttonDown = false;
