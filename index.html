@@ -30,6 +30,15 @@
         <button id="zoomin">zoom in</button>
         <button id="zoomout">zoom out</button>
       </div>
+      <div class="toolbar">
+        <div class="windowButton">
+          <button onclick="this.parentNode.classList.add('open')">shader</button>
+          <div>
+            <button onclick="this.parentNode.parentNode.classList.remove('open')">close</button>
+          shader tool goes here
+          </div>
+        </div>
+      </div>
     </div>
     <canvas width="1024" height="768" id="surface"></canvas>
   </form>
