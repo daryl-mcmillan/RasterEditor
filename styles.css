@@ -26,15 +26,13 @@ input.color:checked + label {
 canvas {
   border: 1px solid black;
   box-shadow: 0 0 5px black;
-  image-rendering: optimizeSpeed;
+  image-rendering: crisp-edges;
 }
-div.windowButton {
-  display: inline-block;
+
+div.panel {
+  display:none;
 }
-div.windowButton > div {
-  display: none;
-}
-div.windowButton.open > div {
+div.panel.open {
   display: block;
   position: fixed;
   top: 20px;
@@ -46,4 +44,9 @@ div.windowButton.open > div {
   border-radius: 3px;
   box-shadow: 0 0 5px black;
   padding: 2em;
+}
+div.panel button.close {
+  position: absolute;
+  top: 3px;
+  right: 3px;
 }

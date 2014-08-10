@@ -123,5 +123,3 @@ surface.addEventListener('mouseout', endTrace);
 surface.addEventListener('mousedown', beginTrace);
 surface.addEventListener('mousemove', traceMove);
 surface.addEventListener('click', canvasClick);
-
-var asdf = document.querySelectorAll("div.windowButton > button");
