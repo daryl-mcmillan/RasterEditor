@@ -51,10 +51,22 @@ function previewShader(input) {
     input.classList.add("error");
     return;
   }
+  var fix = function(val,def) {
+    if( val === undefined ) {
+      return def;
+    } else {
+      return val;
+    }
+  };
   for(var x=0; x<image.width; x++) {
     for(var y=0; y<image.height; y++) {
-      var color = func(image.width,image.height,x,y) || {};
-      image.drawDot(x,y,color.r||0,color.g||0,color.b||0,color.a||255);
+      var color = func(image.width,image.height,x,y) || {a:0};
+      image.drawDot(x,y,
+        fix(color.r,0),
+        fix(color.g,0),
+        fix(color.b,0),
+        fix(color.a,255)
+      );
     }
   }
   drawSurface();
