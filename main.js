@@ -60,12 +60,12 @@ function previewShader(input) {
   };
   for(var x=0; x<image.width; x++) {
     for(var y=0; y<image.height; y++) {
-      var color = func(image.width,image.height,x,y) || {a:0};
+      var color = func(image.width,image.height,x,y) || {};
       image.drawDot(x,y,
         fix(color.r,0),
         fix(color.g,0),
         fix(color.b,0),
-        fix(color.a,255)
+        255
       );
     }
   }
