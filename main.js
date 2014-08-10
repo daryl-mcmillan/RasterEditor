@@ -39,6 +39,27 @@ function configureSurface() {
   drawSurface();
 }
 
+function previewShader(input) {
+  var shader = input.value;
+  var func;
+  var s = "(function(width,height,x,y){\n" + shader + "\n})";
+  try {
+    func = eval(s);
+    input.classList.remove("error");
+  } catch(e) {
+    console.log(e);
+    input.classList.add("error");
+    return;
+  }
+  for(var x=0; x<image.width; x++) {
+    for(var y=0; y<image.height; y++) {
+      var color = func(image.width,image.height,x,y) || {};
+      image.drawDot(x,y,color.r||0,color.g||0,color.b||0,color.a||255);
+    }
+  }
+  drawSurface();
+}
+
 configureSurface();
 
 function zoomIn() {

@@ -50,3 +50,6 @@ div.panel button.close {
   top: 3px;
   right: 3px;
 }
+textarea.error {
+  background-color: #FFAAAA;
+}
